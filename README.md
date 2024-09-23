@@ -18,6 +18,10 @@ The following project is a web application built with python (Flask) and Bootstr
    source /bin/activate
    pip3 install Flask
    ```
+4. Initialize the Database:
+   ```
+   python3 init_db.py
+   ```
 4. Run your Flask app (in debug mode if needed)
    ```
    flask run  # --debug
