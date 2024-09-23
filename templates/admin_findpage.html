@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        <div class="form-group">
+            <label for="str">Search for</label>
+            <input type="text" name="findstr"
+                   placeholder="findstr" class="form-control"
+                   value="{{ request.form['findstr'] }}"></input>
+        </div>
+  <h2>
+    Available Influencers
+  </h2>
+  {% for influencer in influencers %}
+  <div >
+      <h2>
+        Influencer: {{ influencer['NAME'] }} 
+      </h2>
+      <h2>
+        Category : {{ influencer['CATEGORY'] }} 
+      </h2>
+      <p>
+        {{ influencer['NICHE'] }}
+      </p>
+      <h2>
+        Reach : {{ influencer['REACH'] }} 
+      </h2>
+    </div>
+  {% endfor %}
+  <h2>
+    Available Campaigns
+  </h2>
+  {% for campaign in campaigns %}
+  <div {% if campaign['INAPPROPIATE']==1 %}
+  bgcolor='red'
+  {% endif %}>
+      <h2>
+        Campaign: {{ campaign['NAME'] }} 
+      </h2>
+      <p>
+        {{ campaign['DESCRIPTION'] }}
+      </p>
+      <div>
+        <a href="{{ url_for('campaign', id=campaign['ID']) }}" class="btn btn-primary">View</a>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

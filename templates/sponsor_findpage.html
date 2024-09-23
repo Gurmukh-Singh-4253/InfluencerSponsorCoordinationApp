@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        <div class="form-group">
+            <label for="str">Search for</label>
+            <input type="text" name="str"
+                   placeholder="str" class="form-control"
+                   value="{{ request.form['str'] }}"></input>
+        </div>
+  <h2>
+    Available Influencers
+  </h2>
+  {% for influencer in influencers %}
+  <div >
+      <h2>
+        Influencer: {{ influencer['NAME'] }} 
+      </h2>
+      <h2>
+        Category : {{ influencer['CATEGORY'] }} 
+      </h2>
+      <p>
+        {{ influencer['NICHE'] }}
+      </p>
+      <h2>
+        Reach : {{ influencer['REACH'] }} 
+      </h2>
+      <div>
+        <a href="{{ url_for('sendreq_to_influencer', username=username, id = influencer['USERNAME']) }}" class="btn btn-primary">Send Request</a>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

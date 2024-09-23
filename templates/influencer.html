@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>
+    Campaigns
+  </h2>
+  {% for campaign in campaigns %}
+  <div {% if campaign['INAPPROPIATE']==1 %}
+  bgcolor='red'
+  {% endif %}>
+      <h2>
+        Campaign: {{ campaign['NAME'] }} BY {{ campaign['SPONSOR'] }}
+      </h2>
+      <p>
+        {{ campaign['DESCRIPTION'] }}
+      </p>
+      <div>
+        <a href="{{ url_for('campaign', id=campaign['ID']) }}" class="btn btn-primary">View</a>
+        <a href="{{ url_for('sendreq_to_sponsor', id=campaign['ID'], username= username) }}" class="btn btn-primary">Request</a>
+      </div>
+    </div>
+  {% endfor %}
+  <hr> 
+  <h2>
+    Requests
+  </h2>
+  {% for request in requests %}
+      <div>
+      <h2>
+        request: {{ request['NAME'] }} BY {{ request['SPONSOR'] }}
+      </h2>
+      <p>
+        {{ request['MESSAGES'] }}
+      </p>
+      <div>
+      {% if request['STATUS'] == 'sent by sponsor'%}
+        <a href="{{ url_for('campaign', id=campaign['ID']) }}" class="btn btn-primary">View</a>
+       <form action="{{ url_for('accept', username = username, id= request['ID'] , influencer = request['INFLUENCER_ID']) }}" method="POST">
+    <input type="submit" value="Accept"
+            class="btn btn-primary"
+            onclick="return confirm('Are you sure you want to Accept this request?')">
+</form>
+  <form action="{{ url_for('reject', username = username, id= request['ID'] , influencer = request['INFLUENCER_ID']) }}" method="POST">
+    <input type="submit" value="Reject"
+            class="btn btn-danger "
+            onclick="return confirm('Are you sure you want to Reject this request?')">
+</form>
+
+      {% else %}
+        Status: {{ request['STATUS'] }}
+      {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

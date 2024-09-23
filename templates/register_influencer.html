@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>
+  Registration for influencers
+</h2>
+  <form method="post">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username"
+               placeholder="username" class="form-control"
+               value="{{ request.form['username'] }}"></input>
+    </div>
+    <div class="form-group">
+        <label for="name">Name </label>
+        <input type="text" name="name"
+               placeholder="name" class="form-control"
+               value="{{ request.form['name'] }}"></input>
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <input type="text" name="category"
+               placeholder="category" class="form-control"
+               value="{{ request.form['category'] }}"></input>
+    </div>
+    <div class="form-group">
+        <label for="niche">Niche</label>
+        <input type="text" name="niche"
+               placeholder="niche" class="form-control"
+               value="{{ request.form['niche'] }}"></input>
+    </div>
+    <div class="form-group">
+        <label for="reach">Reach</label>
+        <input type="text" name="reach"
+               placeholder="reach" class="form-control"
+               value="{{ request.form['reach'] }}"></input>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" name="password"
+               placeholder="password" class="form-control"
+               value="{{ request.form['password'] }}"></input>
+    </div>
+    <div class="form-group" align="center">
+        <button type="submit" class="btn btn-primary">submit</button>
+    </div>
+  </form>
+<hr>
+{% endblock %}

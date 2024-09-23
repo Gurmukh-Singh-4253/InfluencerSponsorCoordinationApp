@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div display="flex" justify-content="center" align-items="center">
+    <form method="post">
+        <div class="form-group">
+            <label for="New Campaign">New Campaign</label>
+            <input type="text" name="name"
+                   placeholder="name" class="form-control"
+                   value="{{ request.form['name'] }}"></input>
+        </div>
+
+        <div class="form-group">
+            <input type="text" name="description"
+                   placeholder="description" class="form-control"
+                   value="{{ request.form['description'] }}"></input>
+        </div>
+        <div class="form-group">
+            <input type="int" name="budget"
+                   placeholder="budget" class="form-control"
+                   value="{{ request.form['budget'] }}"></input>
+        </div>
+        <div class="form-group">
+            <input type="text" name="goals"
+                   placeholder="goals" class="form-control"
+                   value="{{ request.form['goals'] }}"></input>
+        </div>
+        <div class="form-group" align="center">
+            <button type="submit" class="btn btn-primary">submit</button>
+        </div>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>
+    Your Campaigns
+  </h2>
+  {% for campaign in campaigns %}
+  <div {% if campaign['INAPPROPIATE']==1 %}
+  bgcolor='red'
+  {% endif %}>
+      <h3>
+        Campaign: {{ campaign['NAME'] }} 
+      </h3>
+      <p>
+        {{ campaign['DESCRIPTION'] }}
+      </p>
+      <div>
+        <a href="{{ url_for('campaign', id = campaign['ID']) }}" class="btn btn-primary">View</a>
+  <form action="{{ url_for('delete', id = campaign['ID'], username = campaign['SPONSOR'])}}" method="POST">
+        <input type="submit" value="End Campaign"
+            class="btn btn-primary"
+            onclick="return confirm('Are you sure you want to end this campaign?')">
+</form>
+      </div>
+    </div>
+  {% endfor %}
+  <hr> 
+  <h2>
+    Requests
+  </h2>
+  {% for request in requests %}
+      <div>
+      <h2>
+        re: {{ request['INFLUENCER_ID'] }} FOR {{ request['NAME'] }}
+      </h2>
+      <p>
+        {{ request['MESSAGES'] }}
+      </p>
+      <h3>
+        Payment: {{ request['PAYMENT_AMOUNT'] }}
+      </h3>
+      <div>
+  {% if request['STATUS'][0:4] == 'sent' %}
+  <form action="{{ url_for('accept', username = username, id= request['ID'] , influencer = request['INFLUENCER_ID']) }}" method="POST">
+    <input type="submit" value="Accept"
+            class="btn btn-primary"
+            onclick="return confirm('Are you sure you want to Accept this request?')">
+</form>
+  <form action="{{ url_for('reject', username = username, id= request['ID'] , influencer = request['INFLUENCER_ID']) }}" method="POST">
+    <input type="submit" value="Reject"
+            class="btn btn-danger "
+            onclick="return confirm('Are you sure you want to Reject this request?')">
+</form>
+{% else %}
+      <h3>
+        Status: {{ request['STATUS'] }}
+      </h3>
+{% endif %}
+      </div>
+    </div>
+  {% endfor %}
+  <div>
+    <a href="{{ url_for('new_campaign',username= username ) }}" class="btn btn-primary">Create new campaign</a>
+  </div>
+{% endblock %}

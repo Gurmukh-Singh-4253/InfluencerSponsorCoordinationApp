@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>
+    Available Campaigns
+  </h2>
+  {% for campaign in campaigns %}
+  <div {% if campaign['INAPPROPIATE']==1 %}
+  bgcolor='red'
+  {% endif %}>
+      <h2>
+        Campaign: {{ campaign['NAME'] }} 
+      </h2>
+      <p>
+        {{ campaign['DESCRIPTION'] }}
+      </p>
+      <div>
+        <a href="{{ url_for('campaign', id=campaign['ID']) }}" class="btn btn-primary">View</a>
+        <a href="{{ url_for('sendreq_to_sponsor', id=campaign['ID'], username=username) }}" class="btn btn-primary">Send Request</a>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2> 
+  Campaign: {{ campaign['NAME'] }} BY {{ campaign['SPONSOR'] }}
+  </h2>
+<h3>
+  Description
+</h3>
+<p>
+  {{ campaign['DESCRIPTION'] }}
+</p>
+
+<h4>
+  Budget: {{ campaign['BUDGET'] }}
+</h4>
+
+<h4>
+  Progress: {{ campaign['PROGRESS'] }}
+</h4>
+<h3>
+  Goals
+</h3>
+<p>
+  {{ campaign['GOALS'] }}
+</p>
+{% if campaign['INAPPROPIATE']%}
+This campaign has been marked INAPPROPIATE
+{% endif %}
+{% endblock %}

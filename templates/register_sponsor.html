@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>
+  Registration for sponsors
+</h2>
+  <form method="post">
+    <div class="form-group">
+        <label for="username">Company Name</label>
+        <input type="text" name="username"
+               placeholder="username" class="form-control"
+               value="{{ request.form['username'] }}"></input>
+    </div>
+    <div class="form-group">
+        <label for="industry">Industry </label>
+        <input type="text" name="industry"
+               placeholder="industry" class="form-control"
+               value="{{ request.form['industry'] }}"></input>
+    </div>
+    <div class="form-group">
+        <label for="budget">Budget</label>
+        <input type="ininfluencer" name="budget"
+               placeholder="budget" class="form-control"
+               value="{{ request.form['budget'] }}"></input>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" name="password"
+               placeholder="password" class="form-control"
+               value="{{ request.form['password'] }}"></input>
+    </div>
+        <div class="form-group" align="center">
+            <button type="submit" class="btn btn-primary">submit</button>
+        </div>
+  </form>
+<hr>
+{% endblock %}

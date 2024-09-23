@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>
+    Ongoing Campaigns
+  </h2>
+  {% for campaign in campaigns %}
+    <div>
+      <h2>
+        Campaign: {{ campaign['NAME'] }} BY {{ campaign['SPONSOR'] }}
+      </h2>
+      <p>
+        {{ campaign['DESCRIPTION'] }}
+      </p>
+      <div>
+        <a href="{{ url_for('campaign', id=campaign['ID']) }}" class="btn btn-primary">View</a>
+        <form action="{{ url_for('flag', id=campaign['ID'], username=username) }}" method="POST">
+            <input type="submit" value="FLAG INAPPROPRIATE"
+                    class="btn btn-danger btn-sm"
+                    onclick="return confirm('Are you sure you want to flag this campaign?')">
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+  <h2>
+    Flagged users
+  </h2>
+  {% for flag in flags %}
+    <div>
+      <h2>
+        User: {{ flag['username'] }}
+      </h2>
+      <h2>
+        TYPE: {{ flag['TYPE'] }}
+      </h2>
+      <div>
+        <a href="{{ url_for('campaign', id=campaign['ID']) }}" class="btn btn-primary">View</a>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

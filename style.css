@@ -1,0 +1,52 @@
+/* Catpuccin Mocha Colorscheme */
+
+:root {
+  --base: #302d41;
+  --surface: #3e3a55;
+  --overlay: #494564;
+  --transparent: rgba(56, 52, 77, 0.8);
+  --accent: #a6dafb;
+  --red: #f2777a;
+  --green: #98c379;
+  --yellow: #e5c07b;
+  --blue: #61afef;
+  --purple: #c678dd;
+}
+
+body {
+  background-color: var(--base);
+  color: var(--surface);
+  font-family: sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--accent);
+}
+
+p {
+  color: var(--surface);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Example component: Button */
+.button {
+  background-color: var(--surface);
+  color: var(--accent);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--overlay);
+}
+
